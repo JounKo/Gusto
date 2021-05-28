@@ -1,0 +1,25 @@
+{% extends 'base.html' %} {% block content %}
+
+<div class="wrapper">
+	<div class="container">
+		<div class="category__form">
+			<form class="form" action="" method="POST" enctype="multipart/form-data">
+				{% csrf_token %}
+				<div class="form__title">Title</div>
+				{{ form.title }}
+				<div class="form__order">Category order</div>
+				{{ form.category_order }}
+				<div class="form__visible">Is visible?</div>
+				{{ form.is_visible }}
+				<div class="form__special">Is special?</div>
+				{{ form.is_special }}
+				<div class="form__photo">Photo</div>
+				{{ form.photo }}
+				<button class="form__btn" type="submit">Create</button>
+				<span class="form__error">{{ error }}</span>
+			</form>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

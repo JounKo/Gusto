@@ -1,0 +1,17 @@
+{% extends 'base.html' %} {% block content %}
+
+<div class="container">
+	<div class="category__info">
+		<div class="category__card">
+			<img src="{{ category.photo.url }}" alt="" />
+			<h1 class="card__title">{{ category.title }}</h1>
+			<div class="card__order">Category: {{ category.category_order }}</div>
+			<div class="card__change">
+				<a class="change__link" href="{% url 'category-update' category.id %}">Change</a>
+				<a class="delete__link" href="{% url 'category-delete' category.id %}">Delete</a>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

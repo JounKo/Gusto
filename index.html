@@ -1,0 +1,84 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<section>
+	<h1>Banners</h1>
+	<div class="container">
+			<div class="row">
+					{% for item in banners %}
+							<div class="col-xs-12 col-sm-6">
+									<h2>{{ item.title }}</h2>
+							<img src="{{ item.photo.url }}" alt="">
+							</div>
+					{% endfor %}
+			</div>
+	</div>
+</section>
+
+
+<section>
+	<h1>From Chef</h1>
+	<div class="container">
+		<div class="row">
+			{% for element in events %}
+				<div class="col-xs-12 col-sm-6">
+					<img src="{{ element.photo.url }}" alt="">
+					<h2>{{ element.title }}</h2>
+					<p>{{ element.description }}</p>
+					<div class="timelist">{{ element.event_time }}</div>
+					<div class="datetime">{{ element.event_date }}</div>
+					<div class="price">{{ element.price }}</div>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+</section>
+
+
+<section>
+  <h1>Menu</h1>
+  <div class="container">
+    <div class="row">
+      {% for item in categories %}
+        <div class="col-xs-12 col-sm-6">
+					<h2>{{ item.title }}</h2>
+          {% for dish in item.dishes %}
+						<div>
+							<div><h3>{{ dish.title }}</h3></div>
+                <div><p>{{ dish.description }}</p></div>
+                <div><p>{{ dish.price }} &#8372</p></div>
+								<div><img src="{{ dish.photo.url }}" alt></div>
+							</div>
+          {% endfor %}
+					</div>
+        {% endfor %}
+        </div>
+    </div>
+</section>
+
+
+<section>
+	<h1>Send message</h1>
+	<div class="container">
+		<div class="row">
+			<form class="form"
+				name="sendMessage"
+				id="contactForm"
+				novalidate
+				action=""
+				method="post"
+			>
+				{% csrf_token %}
+				<div class="reserv">
+					<div class="reserv__name">{{ form.user_name }}</div>
+					<div class="reserv__email">{{ form.user_email }}</div>
+					<div class="reserv__message">{{ form.message }}</div>
+				</div>
+				<button type="submit" class="reserv__btn">Book now</button>
+			</form>
+		</div>
+	</div>
+</section>
+
+{% endblock %}

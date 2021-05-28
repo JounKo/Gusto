@@ -1,0 +1,31 @@
+{% extends 'base.html' %} {% block content %}
+
+<div class="wrapper">
+	<div class="container">
+		<div class="dish__main">
+			<div class="dish__card">
+				<div class="dish__img">
+					<img src="{{ dish.photo.url }}" alt="" />
+				</div>
+				<div class="dish__info">
+					<h1 class="card__title">{{ dish.title }}</h1>
+					<div class="card__price">Price: {{ dish.price }}&#8372</div>
+					<div class="card__description">{{ dish.description }}</div>
+					<div class="card__change">
+						<a class="change__link" href="{% url 'dish-update' dish.id %}"
+							>Change</a
+						>
+						<a class="delete__link" href="{% url 'dish-delete' dish.id %}"
+							>Delete</a
+						>
+					</div>
+				</div>
+			</div>
+			<div class="link__back">
+				<a href="/menu/dishes/">Back</a>
+			</div>
+		</div>
+	</div>
+</div>
+
+{% endblock %}

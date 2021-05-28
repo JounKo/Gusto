@@ -1,0 +1,25 @@
+{% extends 'base.html' %} {% block content %}
+
+<div class="container">
+	<div class="category">
+		{% for element in category %}
+		<div class="category__card">
+			<img src="{{ element.photo.url }}" alt="" />
+			<h1 class="card__title">{{ element.title }}</h1>
+			<div class="card__order">Category: {{ element.category_order }}</div>
+			<div class="card__change">
+				<a class="change__link" href="{% url 'category-details' element.pk %}"
+					>Details</a
+				>
+			</div>
+		</div>
+		{% endfor %}
+	</div>
+	<div class="create__category">
+		<span class="link__left"></span>
+		<a href="create-new-category/">Create new Category</a>
+		<span class="link__right"></span>
+	</div>
+</div>
+
+{% endblock %}

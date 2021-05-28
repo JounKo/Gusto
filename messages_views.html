@@ -1,0 +1,72 @@
+{% extends 'base.html' %} {% block content %}
+
+<div class="wrapper">
+	<div class="container">
+		<h3 class="messages__title">Сообщения от пользователей</h3>
+		<div class="messages__body">
+			{% for item in items %}
+			<div class="messages__row">
+				<div class="message__name">{{ item.user_name }}</div>
+				<div class="mesasge__email">{{ item.user_email }}</div>
+				<div class="message__date">{{ item.send_date | date:'d-m-Y' }}</div>
+				<div class="message__text"><p>{{ item.message }}</p></div>
+				<div class="message__processed">
+					{% if item.ip_processed == false %}
+					<a href="{{ item.pk }}">Обробити</a>
+					{% endif %}
+				</div>
+			</div>
+			{% endfor %}
+		</div>
+	</div>
+
+	<div id="navigation" class="container">
+		<div class="nav">
+			<div class="nav__row">
+				<nav aria-label="Page navigation example">
+					<ul
+						class="pagination"
+						style="display: flex; justify-content: space-around"
+					>
+						{% if items.has_previous %}
+						<li class="page-item">
+							<a
+								class="page-link"
+								href="?page={{ items.previous_page_number }}"
+								aria-label="Previous"
+							>
+								<!-- <span aria-hidden="true">&laquo;</span> -->
+								<span class="sr__only">Previous</span>
+							</a>
+						</li>
+						{% endif %} {% for page in items.paginator.page_range %} 
+						{% if page == items.number %}
+						<li class="page__item active">
+							<a class="page__link" href="#">
+								{{ page }}
+								<!-- <span class="sr__only">(current)</span> -->
+							</a>
+						</li>
+						{% else %}
+						<li class="page__item">
+							<a class="page__link" href="?page={{ page }}"> {{ page }} </a>
+						</li>
+						{% endif %} {% endfor %} {% if items.has_next %}
+						<li class="page__item">
+							<a
+								class="page__link"
+								href="?page={{ items.paginator.num_pages }}"
+								aria-label="Next"
+							>
+								<!-- <span aria-hidden="true">&raquo;</span> -->
+								<span class="sr__only">Next</span>
+							</a>
+						</li>
+						{% endif %}
+					</ul>
+				</nav>
+			</div>
+		</div>
+	</div>
+</div>
+{% endblock %}

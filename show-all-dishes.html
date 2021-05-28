@@ -1,0 +1,31 @@
+{% extends 'base.html' %} {% block content %}
+
+<div class="wrapper">
+	<div class="container">
+		<div class="dish__body">
+			{% for element in dishes %}
+			<div class="dish__card">
+				<div class="dish__img">
+					<img src="{{ element.photo.url }}" alt="" />
+				</div>
+				<div class="dish__info">
+					<h1 class="card__title">{{ element.title }}</h1>
+					<div class="card__price">Price: {{ element.price }}</div>
+					<div class="card__change">
+						<a class="change__link" href="{% url 'dish-details' element.pk %}"
+							>Details</a
+						>
+					</div>
+				</div>
+			</div>
+			{% endfor %}
+		</div>
+		<div class="create__dish">
+			<span class="linkl"></span>
+			<a href="create-new-dish/">Create new Dish</a>
+			<span class="linkr"></span>
+		</div>
+	</div>
+</div>
+
+{% endblock %}
